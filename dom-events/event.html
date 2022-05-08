@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>JS Events</h2>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+        <button id="post">Comment</button>
+
+        <div id="commentBox">
+
+        </div>
+    </div>
+
+    <script>
+        let comment = document.getElementById("comment");
+        let commentBox = document.getElementById("commentBox")
+        let post = document.getElementById("post");
+
+        post.onclick = () => {
+
+            let newComment = document.createElement("div")
+            newComment.classList.add("new-comment")
+            commentBox.appendChild(newComment)
+
+            let newElement = document.createElement("p")
+            newElement.innerText = comment.value;
+            newComment.appendChild(newElement);
+
+            let deleteBtn = document.createElement("button")
+            deleteBtn.innerText = "delete";
+            deleteBtn.classList.add("btn");
+            newElement.appendChild(deleteBtn); 
+
+            let btns = document.querySelectorAll(".btn")
+
+            // for (btn of btns){
+            //     btn.onclick = (e)=> {
+            //         e.target.parentNode.remove()
+            //     }
+            // }
+            commentBox.onclick = (e)=>{
+                let item = e.target;
+                
+                if (item.classList[0] === "delete"){
+                    item.parentElement.remove()
+                }
+            }
+        }
+
+        // Local Storage
+
+        localStorage.setItem("user", "aiman")
+
+        // session storage
+        sessionStorage.setItem("new student", "addedd")
+
+        // localStorage.clear()
+
+        let user = localStorage.getItem("user") 
+        console.log(user)
+    </script>
+
+
+</body>
+
+</html>

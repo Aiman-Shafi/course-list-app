@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <ul id="items">
+            <li class="list">Loruuem asdsad.</li>
+            <li class="list">Lorsadasfsdfsadfem </li>
+            <li class="list">Loremdsgdsafsad t.</li>
+            <li class="list">Losadfsadfdsarem ipsulor sit.</li>
+            <li class="list">ertertertert ipsumolor sit.</li>
+        </ul>
+        <button id="btn">button</button>
+    </div>
+
+    <script>
+        document.querySelector(".container").addEventListener("click", function(){
+            console.log("section is clicked")
+        })
+
+        document.querySelector(".items").addEventListener("click", function(event){
+            console.log("ul is clicked")
+            event.stopPropagation()
+        })
+
+        document.querySelector(".new-list").addEventListener("click", function(event){
+            console.log("li second is clicked")
+            event.stopPropagation();
+        })
+
+        let lists = document.getElementsByClassName("list")
+
+        for (const list of lists){
+            list.addEventListener("click", function(event){
+                // document.getElementById("items").removeChild(list)
+                event.target.parentNode.removeChild(event.target)
+            })
+        }
+
+        document.getElementById("btn").addEventListener("click", function(){
+            let newElement = document.createElement("li")
+            newElement.classList.add("list")
+            newElement.innerText = "hello"
+            document.getElementById("items").appendChild(newElement)
+        })
+
+        document.getElementById("items").addEventListener("click", function(){
+            event.target.parentNode.removeChild(event.target)
+        })
+
+
+
+    </script>
+</body>
+</html>

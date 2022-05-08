@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubble</title>
+</head>
+
+<style>
+    .list{
+        color: red;
+        background: rgb(253, 231, 235);
+        margin: 5px 0;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>List of items</h1>
+        <ul id="items">
+            <li class="list">Lorem, ipsum dolor.</li>
+            <li class="list">sdasda, ipsum dolor.</li>
+            <li class="list">apple, ipsum dolor.</li>
+            <li class="list">orangegee, ipsum dolor.</li>
+            <li class="list">bananaaa, ipsum dolor.</li>
+        </ul>
+        <button id="btn">Add item</button>
+    </div>
+
+    <script>
+
+        let lists = document.getElementsByClassName("list")
+
+        // for (let i = 0; i < list.length; i++){
+        //     console.log(list[i])
+        // }
+
+        for (const list of lists){
+            list.addEventListener("click" , function(event){
+                // console.log(event.target)
+                // document.getElementById("items").removeChild(list)
+                event.target.parentNode.removeChild(event.target)
+            })
+        }
+
+        let btn = document.getElementById("btn")
+
+        btn.addEventListener("click", function(){
+            let li = document.createElement("li");
+            li.classList.add("list")
+            li.innerText = "new list is created";
+            let items = document.getElementById("items");
+            // items.innerHTML += `<li class="list">Hello</li>`
+            items.appendChild(li)
+        })
+
+
+        document.getElementById("items").addEventListener("click", function(event){
+            event.target.parentNode.removeChild(event.target)
+        })
+
+        // let container = document.querySelector(".container")
+        // container.addEventListener("click", function(){
+        //     console.log("container is clicked!!")
+        // })
+
+        // document.querySelector(".new-list").addEventListener("click", function(event){
+        //     console.log("new list is clickeddd")
+        //     event.stopPropagation();
+        // })
+
+        // document.querySelector(".items").addEventListener("click", function(){
+        //     console.log("ul items is clickeddd")
+        // })
+
+
+
+    </script>
+</body>
+</html>

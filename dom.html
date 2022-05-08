@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .new-comment{
+        border: 2px solid burlywood;
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .delete{
+        background: red;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <h2>Comment about JS</h2>
+    <textarea name="comment" id="comment" cols="30" rows="10" placeholder="enter you messeage"></textarea><br>
+    <button id="post">Post your Comment</button>
+
+    <div id="commentBox">
+        <!-- <div class="new-comment">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque, optio?</p>
+            <button class="btn">delete</button>
+        </div> -->
+
+        <!-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis quae possimus optio neque harum cum earum, laborum, natus dolores adipisci autem eveniet minus sequi hic numquam eum quia magnam modi. -->
+    </div>
+
+    <script>
+        const comment = document.getElementById("comment");
+        const commentBox = document.getElementById("commentBox");
+        const post = document.getElementById("post");
+
+        post.addEventListener("click", function(){
+
+            //creating a comment
+            let newComment = document.createElement("div");
+            newComment.classList.add("new-comment");
+            commentBox.appendChild(newComment);
+
+            //creating a p tag
+            let newElement = document.createElement("p");
+            newElement.innerText = comment.value;
+            newComment.appendChild(newElement);
+
+            // creating a delete button 
+            let deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "Delete Comment";
+            deleteBtn.classList.add("delete")
+            newComment.appendChild(deleteBtn)
+
+            let deleteComment = document.querySelectorAll(".delete")
+
+            for (const btn of deleteComment){
+                btn.addEventListener("click", function(e){
+                    e.target.parentElement.remove()           
+                })
+            }
+
+            comment.value = ""
+
+
+        })
+
+
+        // // local storage
+        // localStorage.setItem("user", "rakib");
+
+        // //session storage
+        // sessionStorage.setItem("user", "aiman")
+
+        // localStorage.clear()
+
+        const listItems = ["bmw", "toyota", "alion", "misss"]
+
+        localStorage.setItem("car", JSON.stringify(listItems))
+
+        const car = JSON.parse(localStorage.getItem("car"))
+        console.log(car);
+        
+        // const car = localStorage.getItem("car")
+        // console.log(car);
+
+    </script>
+</body>
+</html>
